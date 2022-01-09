@@ -4,18 +4,20 @@
 	import UpvoteCounterVertical from './UpvoteCounterVertical.svelte';
 </script>
 
-<section class="bg-white p-4 rounded-lg overflow-hidden lg:flex lg:p-6 lg:space-x-6">
-	<div class="hidden lg:block">
+<section
+	class="bg-white p-4 rounded-lg overflow-hidden md:flex md:p-6 md:space-x-6 max-w-3xl mx-auto"
+>
+	<div class="hidden md:block">
 		<UpvoteCounterVertical />
 	</div>
-	<div class="space-y-4">
+	<div class="space-y-4 ">
 		<div class="flex justify-between items-center">
 			<div class="flex items-center space-x-4">
 				<img src="/image-amyrobson.png" alt="dp" class="w-8 h-8" />
 				<h4 class="font-medium text-dark-blue">amyrobson</h4>
 				<span class="text-grayish-blue">1 month ago</span>
 			</div>
-			<div class="hidden lg:block">
+			<div class="hidden md:block">
 				<ReplyButton />
 			</div>
 		</div>
@@ -24,7 +26,7 @@
 			exercitationem alias consequatur reprehenderit a, quas, ex provident blanditiis at temporibus
 			quidem eius, voluptatem nesciunt? Libero, accusamus.
 		</p>
-		<div class="flex justify-between lg:hidden">
+		<div class="flex justify-between md:hidden">
 			<UpvoteCounterHorizontal />
 			<ReplyButton />
 		</div>
