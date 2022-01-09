@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import Comment from '$lib/Comment.svelte';
+</script>
+
+<div class="bg-very-light-gray px-4 py-8 space-y-4">
+	<Comment />
+</div>
