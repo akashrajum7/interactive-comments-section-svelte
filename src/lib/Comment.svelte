@@ -4,9 +4,7 @@
 	import UpvoteCounterVertical from './UpvoteCounterVertical.svelte';
 </script>
 
-<section
-	class="bg-white p-4 rounded-lg overflow-hidden md:flex md:p-6 md:space-x-6 max-w-3xl mx-auto"
->
+<section class="bg-white p-4 rounded-lg overflow-hidden md:flex md:p-6 md:space-x-6">
 	<div class="hidden md:block">
 		<UpvoteCounterVertical />
 	</div>
