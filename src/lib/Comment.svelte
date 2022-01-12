@@ -3,6 +3,10 @@
 	import UpvoteCounterHorizontal from './UpvoteCounterHorizontal.svelte';
 	import UpvoteCounterVertical from './UpvoteCounterVertical.svelte';
 	import ReplyTextField from './ReplyTextField.svelte';
+
+	let showReplyTextField = false;
+
+	const toggleReplyTextField = () => (showReplyTextField = !showReplyTextField);
 </script>
 
 <div class="space-y-2">
@@ -18,7 +22,7 @@
 					<span class="text-grayish-blue">1 month ago</span>
 				</div>
 				<div class="hidden md:block">
-					<ReplyButton />
+					<ReplyButton on:click={toggleReplyTextField} />
 				</div>
 			</div>
 			<p class="text-grayish-blue">
@@ -28,9 +32,11 @@
 			</p>
 			<div class="flex justify-between md:hidden">
 				<UpvoteCounterHorizontal />
-				<ReplyButton />
+				<ReplyButton on:click={toggleReplyTextField} />
 			</div>
 		</div>
 	</section>
-	<ReplyTextField />
+	{#if showReplyTextField}
+		<ReplyTextField />
+	{/if}
 </div>
