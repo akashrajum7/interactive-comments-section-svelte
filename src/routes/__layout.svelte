@@ -1,6 +1,9 @@
 <script lang="ts">
-    import '../app.css';
+	import '../app.css';
+	import NavBar from '$lib/NavBar.svelte';
 </script>
+
 <main>
-    <slot></slot>
+	<NavBar />
+	<slot />
 </main>
