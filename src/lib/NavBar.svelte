@@ -6,6 +6,8 @@
 		<!-- <button>
 			<img src="/image-amyrobson.png" alt="dp" class="w-10 h-10" />
 		</button> -->
-		<button class="px-6 py-2 font-medium text-white bg-moderate-blue rounded-lg"> Login </button>
+		<a href="/auth/signin" class="px-6 py-2 font-medium text-white bg-moderate-blue rounded-lg">
+			Signin
+		</a>
 	</div>
 </nav>
