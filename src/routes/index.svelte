@@ -1,3 +1,15 @@
+<script context="module">
+	export async function load({ session }) {
+		if (!session?.user) {
+			return {
+				status: 302,
+				redirect: '/auth/signin'
+			};
+		}
+		return {};
+	}
+</script>
+
 <script>
 	import Comment from '$lib/Comment.svelte';
 	import Replies from '$lib/Replies.svelte';
