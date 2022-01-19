@@ -6,7 +6,6 @@ export const handle: Handle = async ({ request, resolve }) => {
 	const cookies = cookie.parse(request.headers.cookie || '');
 	const { user } = await supabase.auth.api.getUser(cookies.access_token);
 	request.locals.user = user || false;
-
 	const response = await resolve(request);
 	return response;
 };
