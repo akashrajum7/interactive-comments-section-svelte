@@ -35,3 +35,34 @@ export async function post({
 		};
 	}
 }
+
+export async function get(): Promise<EndpointOutput> {
+	const { data, error } = await supabase
+		.from('comments')
+		.select(
+			`
+	id,
+	created_at,
+	value,
+	by:created_by(*),
+	replies:comments(id,
+		created_at,
+		value,
+		by:created_by(*))
+	`
+		)
+		.is('parent', null);
+
+	if (error) {
+		console.error(error);
+		return {
+			status: 500,
+			body: error
+		};
+	}
+
+	return {
+		status: 200,
+		body: data
+	};
+}

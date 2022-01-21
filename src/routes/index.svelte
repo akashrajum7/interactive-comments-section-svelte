@@ -1,12 +1,22 @@
 <script context="module">
-	export async function load({ session }) {
+	export async function load({ session, fetch }) {
 		if (!session?.user) {
 			return {
 				status: 302,
 				redirect: '/auth/signin'
 			};
 		}
-		return {};
+
+		let response = await fetch('/api/comments');
+
+		if (response.ok) {
+			let comments = await response.json();
+			return {
+				props: {
+					comments
+				}
+			};
+		}
 	}
 </script>
 
@@ -14,6 +24,8 @@
 	import Comment from '$lib/Comment.svelte';
 	import Replies from '$lib/Replies.svelte';
 	import ReplyTextField from '$lib/ReplyTextField.svelte';
+
+	export let comments;
 </script>
 
 <div class="bg-very-light-gray px-4 py-8 ">
