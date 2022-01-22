@@ -48,7 +48,11 @@ export async function get(): Promise<EndpointOutput> {
 	replies:comments(id,
 		created_at,
 		value,
-		by:created_by(*))
+		by:created_by(*),
+		replies:comments(id,
+			created_at,
+			value,
+			by:created_by(*))))
 	`
 		)
 		.is('parent', null);
