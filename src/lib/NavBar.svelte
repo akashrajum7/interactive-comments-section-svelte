@@ -10,7 +10,11 @@
 
 		{#if $session?.user}
 			<button>
-				<img src="/image-amyrobson.png" alt="dp" class="w-10 h-10" />
+				<img
+					src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
+					alt="dp"
+					class="w-10 h-10"
+				/>
 			</button>
 		{:else}
 			<a href="/auth/signin" class="px-6 py-2 font-medium text-white bg-moderate-blue rounded-lg">

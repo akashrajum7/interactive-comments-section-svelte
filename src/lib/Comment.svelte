@@ -28,7 +28,11 @@
 			<div class="space-y-4 md:flex-grow">
 				<div class="flex justify-between items-center">
 					<div class="flex items-center space-x-4">
-						<img src="/image-amyrobson.png" alt="dp" class="w-8 h-8" />
+						<img
+							src={`https://source.boringavatars.com/beam?name=${comment?.by?.name ?? 'Anonymous'}`}
+							alt="dp"
+							class="w-8 h-8"
+						/>
 						<h4 class="font-medium text-dark-blue">{comment?.by?.name ?? 'Anonymous'}</h4>
 						<div class="text-grayish-blue">{timeFromNow}</div>
 					</div>

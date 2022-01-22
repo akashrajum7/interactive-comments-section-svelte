@@ -20,12 +20,18 @@
 			console.error('There was an error while trying to create a comment: ', error);
 		}
 	};
+
+	console.log('session: ', $session);
 </script>
 
 <section
 	class="bg-white p-4 rounded-lg overflow-hidden flex flex-col md:flex-row md:p-6 md:space-x-4"
 >
-	<img src="/image-amyrobson.png" alt="dp" class="w-9 h-9 hidden md:block" />
+	<img
+		src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
+		alt="dp"
+		class="w-9 h-9 hidden md:block"
+	/>
 	<textarea
 		class="flex-grow rounded-lg border border-moderate-blue px-6 py-3 text-base text-dark-blue focus:outline-none"
 		rows="3"
@@ -37,7 +43,11 @@
 		on:click={handleButtonClick}>{label}</button
 	>
 	<div class="flex justify-between items-center mt-4 md:hidden">
-		<img src="/image-amyrobson.png" alt="dp" class="w-8 h-8" />
+		<img
+			src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
+			alt="dp"
+			class="w-8 h-8"
+		/>
 		<button
 			on:click={handleButtonClick}
 			class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit"
