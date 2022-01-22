@@ -36,11 +36,16 @@ export async function post({
 	}
 }
 
-export async function get(): Promise<EndpointOutput> {
-	const { data, error } = await supabase
-		.from('comments')
-		.select(
-			`
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function get({ headers }: { headers: any }): Promise<EndpointOutput> {
+	const cookies = cookie.parse(headers.cookie || '');
+
+	if (cookies?.access_token) {
+		await supabase.auth.setAuth(cookies.access_token);
+		const { data, error } = await supabase
+			.from('comments')
+			.select(
+				`
 	id,
 	created_at,
 	value,
@@ -54,19 +59,25 @@ export async function get(): Promise<EndpointOutput> {
 			value,
 			by:created_by(*))))
 	`
-		)
-		.is('parent', null);
+			)
+			.is('parent', null);
 
-	if (error) {
-		console.error(error);
+		if (error) {
+			console.error(error);
+			return {
+				status: 500,
+				body: error
+			};
+		}
+
 		return {
-			status: 500,
-			body: error
+			status: 200,
+			body: data
+		};
+	} else {
+		return {
+			status: 401,
+			body: { message: 'Unauthorized' }
 		};
 	}
-
-	return {
-		status: 200,
-		body: data
-	};
 }
