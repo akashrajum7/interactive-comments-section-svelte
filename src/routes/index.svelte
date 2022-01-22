@@ -26,7 +26,6 @@
 	import ReplyTextField from '$lib/ReplyTextField.svelte';
 
 	export let comments;
-	console.log('comments: ', comments);
 </script>
 
 <div class="bg-very-light-gray min-h-screen px-4 py-8 ">
