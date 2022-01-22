@@ -1,3 +1,7 @@
+<script>
+	export let upvotes = 0;
+</script>
+
 <div class="flex items-center py-2 px-4 bg-very-light-gray rounded-xl space-x-4">
 	<button
 		><svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +11,7 @@
 			/></svg
 		></button
 	>
-	<span class="font-medium text-moderate-blue">20</span>
+	<span class="font-medium text-moderate-blue">{upvotes}</span>
 	<button>
 		<svg width="11" height="3" xmlns="http://www.w3.org/2000/svg"
 			><path
