@@ -20,8 +20,6 @@
 			console.error('There was an error while trying to create a comment: ', error);
 		}
 	};
-
-	console.log('session: ', $session);
 </script>
 
 <section
