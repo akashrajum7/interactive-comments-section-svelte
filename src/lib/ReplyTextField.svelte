@@ -1,6 +1,7 @@
 <script>
 	import { createComment, isReplyButtonLoading } from '$lib/comments';
 	import { session } from '$app/stores';
+	import { toast } from '@zerodevx/svelte-toast';
 
 	export let label = 'REPLY';
 	export let parent = null;
@@ -16,8 +17,22 @@
 		try {
 			await createComment(comment);
 			commentText = '';
+			toast.push('Your comment was successfully added!', {
+				theme: {
+					'--toastBackground': 'hsl(239, 57%, 85%)',
+					'--toastColor': 'hsl(238, 40%, 52%)',
+					'--toastBarBackground': 'hsl(238, 40%, 52%)'
+				}
+			});
 		} catch (error) {
 			console.error('There was an error while trying to create a comment: ', error);
+			toast.push('There was an error while trying to create your comment!', {
+				theme: {
+					'--toastBackground': 'hsl(357, 100%, 86%)',
+					'--toastColor': 'hsl(358, 79%, 66%)',
+					'--toastBarBackground': 'hsl(358, 79%, 66%)'
+				}
+			});
 		}
 	};
 </script>
