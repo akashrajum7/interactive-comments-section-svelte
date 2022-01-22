@@ -1,5 +1,5 @@
 <script>
-	import { createComment } from '$lib/comments';
+	import { createComment, isReplyButtonLoading } from '$lib/comments';
 	import { session } from '$app/stores';
 
 	export let label = 'REPLY';
@@ -14,7 +14,7 @@
 			parent: parent
 		};
 		try {
-			const createdComment = await createComment(comment);
+			await createComment(comment);
 			commentText = '';
 		} catch (error) {
 			console.error('There was an error while trying to create a comment: ', error);
@@ -37,7 +37,8 @@
 		placeholder="Add a comment..."
 	/>
 	<button
-		class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit hidden md:block"
+		class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit hidden md:block disabled:opacity-50"
+		disabled={$isReplyButtonLoading}
 		on:click={handleButtonClick}>{label}</button
 	>
 	<div class="flex justify-between items-center mt-4 md:hidden">
@@ -48,7 +49,8 @@
 		/>
 		<button
 			on:click={handleButtonClick}
-			class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit"
+			disabled={$isReplyButtonLoading}
+			class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit disabled:opacity-50"
 			>{label}</button
 		>
 	</div>

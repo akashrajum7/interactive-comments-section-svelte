@@ -6,14 +6,11 @@
 				redirect: '/auth/signin'
 			};
 		}
-
-		let response = await fetch('/api/comments');
-
+		const response = await fetch('/api/comments');
 		if (response.ok) {
-			let comments = await response.json();
 			return {
 				props: {
-					comments
+					ssrcomments: await response.json()
 				}
 			};
 		}
@@ -21,18 +18,26 @@
 </script>
 
 <script>
+	import { onMount } from 'svelte';
+	import { comments, commentsLoading } from '$lib/comments';
 	import Comment from '$lib/Comment.svelte';
-	import Replies from '$lib/Replies.svelte';
 	import ReplyTextField from '$lib/ReplyTextField.svelte';
+	import Loader from '$lib/Loader.svelte';
+	export let ssrcomments;
 
-	export let comments;
+	onMount(() => {
+		$comments = ssrcomments;
+	});
 </script>
 
 <div class="bg-very-light-gray min-h-screen px-4 py-8 ">
 	<div class="max-w-3xl mx-auto space-y-4">
-		{#each comments as comment (comment.id)}
+		{#each $comments as comment (comment.id)}
 			<Comment {comment} />
 		{/each}
+		{#if $commentsLoading}
+			<Loader />
+		{/if}
 		<ReplyTextField label="SEND" />
 	</div>
 </div>

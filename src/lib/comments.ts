@@ -1,27 +1,33 @@
-import supabase from './supabase';
 import type { CreateComment } from '../../types/comments';
+import { writable } from 'svelte/store';
 
-export const createComment = async (comment: CreateComment): Promise<void> => {
-	fetch('/api/comments', {
+export const comments = writable([]);
+export const commentsLoading = writable(false);
+export const isReplyButtonLoading = writable(false);
+
+export const createComment = async (comment: CreateComment): Promise<Response> => {
+	isReplyButtonLoading.set(true);
+	const response = await fetch('/api/comments', {
 		method: 'POST', // or 'PUT'
 		headers: {
 			'Content-Type': 'application/json'
 		},
 		body: JSON.stringify(comment)
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log('Success:', data);
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
+	});
+	if (response.ok) {
+		await getComments();
+	}
+	isReplyButtonLoading.set(false);
+	return response;
 };
 
-export const getComments = async (): Promise<unknown> => {
-	const { data, error } = await supabase.from('comments').select();
-	if (error) {
-		console.error(error);
+export const getComments = async (): Promise<Response> => {
+	commentsLoading.set(true);
+	const response = await fetch('/api/comments');
+
+	if (response.ok) {
+		comments.set(await response.json());
 	}
-	return data;
+	commentsLoading.set(false);
+	return response;
 };
