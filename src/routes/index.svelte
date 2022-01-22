@@ -26,12 +26,14 @@
 	import ReplyTextField from '$lib/ReplyTextField.svelte';
 
 	export let comments;
+	console.log('comments: ', comments);
 </script>
 
-<div class="bg-very-light-gray px-4 py-8 ">
+<div class="bg-very-light-gray min-h-screen px-4 py-8 ">
 	<div class="max-w-3xl mx-auto space-y-4">
-		<Comment />
-		<Replies />
+		{#each comments as comment (comment.id)}
+			<Comment {comment} />
+		{/each}
 		<ReplyTextField label="SEND" />
 	</div>
 </div>

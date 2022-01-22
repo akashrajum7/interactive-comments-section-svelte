@@ -3,7 +3,7 @@
 	import { session } from '$app/stores';
 
 	export let label = 'REPLY';
-	export let parentComment = null;
+	export let parent = null;
 
 	let commentText = '';
 
@@ -11,11 +11,14 @@
 		const comment = {
 			value: commentText,
 			created_by: $session.user.id,
-			parent: parentComment
+			parent: parent
 		};
-		console.log('comment:', comment);
-		const createdComment = await createComment(comment);
-		// console.log('Created Comment:', createdComment);
+		try {
+			const createdComment = await createComment(comment);
+			commentText = '';
+		} catch (error) {
+			console.error('There was an error while trying to create a comment: ', error);
+		}
 	};
 </script>
 

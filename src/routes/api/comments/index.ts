@@ -50,14 +50,20 @@ export async function get({ headers }: { headers: any }): Promise<EndpointOutput
 	created_at,
 	value,
 	by:created_by(*),
+	upvotes(count),
 	replies:comments(id,
 		created_at,
 		value,
 		by:created_by(*),
+		upvotes(count),
 		replies:comments(id,
 			created_at,
 			value,
-			by:created_by(*))))
+			by:created_by(*),
+			upvotes(count)
+			)
+		)
+	)
 	`
 			)
 			.is('parent', null);
