@@ -9,6 +9,9 @@
 	let commentText = '';
 
 	const handleButtonClick = async () => {
+		if (!commentText?.length) {
+			return;
+		}
 		const comment = {
 			value: commentText,
 			created_by: $session.user.id,
@@ -52,9 +55,26 @@
 		placeholder="Add a comment..."
 	/>
 	<button
-		class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit hidden md:block disabled:opacity-50"
+		class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit hidden md:flex md:items-center disabled:opacity-50"
 		disabled={$isReplyButtonLoading}
-		on:click={handleButtonClick}>{label}</button
+		on:click={handleButtonClick}
+	>
+		{#if $isReplyButtonLoading}
+			<svg
+				class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+				xmlns="http://www.w3.org/2000/svg"
+				fill="none"
+				viewBox="0 0 24 24"
+			>
+				<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+				<path
+					class="opacity-75"
+					fill="currentColor"
+					d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+				/>
+			</svg>
+		{/if}
+		{label}</button
 	>
 	<div class="flex justify-between items-center mt-4 md:hidden">
 		<img
@@ -65,8 +85,31 @@
 		<button
 			on:click={handleButtonClick}
 			disabled={$isReplyButtonLoading}
-			class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit disabled:opacity-50"
-			>{label}</button
+			class="text-white flex items-center bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit disabled:opacity-50"
+		>
+			{#if $isReplyButtonLoading}
+				<svg
+					class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<circle
+						class="opacity-25"
+						cx="12"
+						cy="12"
+						r="10"
+						stroke="currentColor"
+						stroke-width="4"
+					/>
+					<path
+						class="opacity-75"
+						fill="currentColor"
+						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+					/>
+				</svg>
+			{/if}
+			{label}</button
 		>
 	</div>
 </section>
