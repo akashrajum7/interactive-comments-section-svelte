@@ -9,6 +9,8 @@
 	import ReplyTextField from './ReplyTextField.svelte';
 	import Replies from './Replies.svelte';
 
+	import { session } from '$app/stores';
+
 	export let comment;
 
 	let showReplyTextField = false;
@@ -21,19 +23,28 @@
 
 <div class="space-y-4">
 	<div class="space-y-2">
-		<section class="bg-white p-4 rounded-lg overflow-hidden md:flex md:p-6 md:space-x-6">
+		<section class="overflow-hidden rounded-lg bg-white p-4 md:flex md:space-x-6 md:p-6">
 			<div class="hidden md:block">
 				<UpvoteCounterVertical {upvotes} />
 			</div>
 			<div class="space-y-4 md:flex-grow">
-				<div class="flex justify-between items-center">
+				<div class="flex items-center justify-between">
 					<div class="flex items-center space-x-4">
 						<img
 							src={`https://source.boringavatars.com/beam?name=${comment?.by?.name ?? 'Anonymous'}`}
 							alt="dp"
-							class="w-8 h-8"
+							class="h-8 w-8"
 						/>
-						<h4 class="font-medium text-dark-blue">{comment?.by?.name ?? 'Anonymous'}</h4>
+						<div class="flex items-center justify-center space-x-2">
+							<h4 class="font-medium text-dark-blue">{comment?.by?.name ?? 'Anonymous'}</h4>
+							{#if comment.by.id === $session.user.id}
+								<div
+									class="flex items-center justify-center rounded-sm bg-moderate-blue py-px px-2"
+								>
+									<p class="m-0 p-0 text-center text-sm font-medium text-very-light-gray">you</p>
+								</div>
+							{/if}
+						</div>
 						<div class="text-grayish-blue">{timeFromNow}</div>
 					</div>
 					{#if comment.hasOwnProperty('replies')}

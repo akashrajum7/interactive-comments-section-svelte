@@ -30,8 +30,8 @@
 	});
 </script>
 
-<div class="bg-very-light-gray min-h-screen px-4 py-8 ">
-	<div class="max-w-3xl mx-auto space-y-4">
+<div class="min-h-screen bg-very-light-gray px-4 py-8 ">
+	<div class="mx-auto max-w-3xl space-y-4">
 		{#each $comments as comment (comment.id)}
 			<Comment {comment} />
 		{/each}

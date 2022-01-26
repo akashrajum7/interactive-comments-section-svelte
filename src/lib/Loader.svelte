@@ -1,6 +1,6 @@
 <div class="flex items-center justify-center">
 	<svg
-		class="animate-spin h-5 w-5 text-grayish-blue"
+		class="h-5 w-5 animate-spin text-grayish-blue"
 		xmlns="http://www.w3.org/2000/svg"
 		fill="none"
 		viewBox="0 0 24 24"

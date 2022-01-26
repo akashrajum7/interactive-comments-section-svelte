@@ -2,10 +2,10 @@
 	import { session } from '$app/stores';
 </script>
 
-<nav class="px-4 md:px-6 py-3 bg-white border-b-2 border-b-moderate-blue">
-	<div class="max-w-7xl mx-auto flex justify-between items-center">
+<nav class="border-b-2 border-b-moderate-blue bg-white px-4 py-3 md:px-6">
+	<div class="mx-auto flex max-w-7xl items-center justify-between">
 		<div>
-			<h1 class="font-bold text-2xl text-dark-blue">{'</>'} Comments</h1>
+			<h1 class="text-2xl font-bold text-dark-blue">{'</>'} Comments</h1>
 		</div>
 
 		{#if $session?.user}
@@ -13,7 +13,7 @@
 				<img
 					src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
 					alt="dp"
-					class="w-10 h-10"
+					class="h-10 w-10"
 				/>
 			</button>
 		{:else}

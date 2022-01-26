@@ -41,12 +41,12 @@
 </script>
 
 <section
-	class="bg-white p-4 rounded-lg overflow-hidden flex flex-col md:flex-row md:p-6 md:space-x-4"
+	class="flex flex-col overflow-hidden rounded-lg bg-white p-4 md:flex-row md:space-x-4 md:p-6"
 >
 	<img
 		src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
 		alt="dp"
-		class="w-9 h-9 hidden md:block"
+		class="hidden h-9 w-9 md:block"
 	/>
 	<textarea
 		class="flex-grow rounded-lg border border-moderate-blue px-6 py-3 text-base text-dark-blue focus:outline-none"
@@ -55,13 +55,13 @@
 		placeholder="Add a comment..."
 	/>
 	<button
-		class="text-white bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit hidden md:flex md:items-center disabled:opacity-50"
+		class="hidden h-fit rounded-lg bg-moderate-blue px-6 py-2.5 text-white hover:opacity-50 disabled:opacity-50 md:flex md:items-center"
 		disabled={$isReplyButtonLoading}
 		on:click={handleButtonClick}
 	>
 		{#if $isReplyButtonLoading}
 			<svg
-				class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+				class="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="none"
 				viewBox="0 0 24 24"
@@ -76,20 +76,20 @@
 		{/if}
 		{label}</button
 	>
-	<div class="flex justify-between items-center mt-4 md:hidden">
+	<div class="mt-4 flex items-center justify-between md:hidden">
 		<img
 			src={`https://source.boringavatars.com/beam?name=${$session.user.user_metadata.name}`}
 			alt="dp"
-			class="w-8 h-8"
+			class="h-8 w-8"
 		/>
 		<button
 			on:click={handleButtonClick}
 			disabled={$isReplyButtonLoading}
-			class="text-white flex items-center bg-moderate-blue rounded-lg px-6 py-2.5 hover:opacity-50 h-fit disabled:opacity-50"
+			class="flex h-fit items-center rounded-lg bg-moderate-blue px-6 py-2.5 text-white hover:opacity-50 disabled:opacity-50"
 		>
 			{#if $isReplyButtonLoading}
 				<svg
-					class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+					class="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
 					xmlns="http://www.w3.org/2000/svg"
 					fill="none"
 					viewBox="0 0 24 24"

@@ -2,7 +2,7 @@
 	export let upvotes = 0;
 </script>
 
-<div class="flex items-center py-2 px-4 bg-very-light-gray rounded-xl space-x-4">
+<div class="flex items-center space-x-4 rounded-xl bg-very-light-gray py-2 px-4">
 	<button
 		><svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"
 			><path
