@@ -2,6 +2,9 @@
 	import { createComment, isReplyButtonLoading } from '$lib/comments';
 	import { session } from '$app/stores';
 	import { toast } from '@zerodevx/svelte-toast';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let label = 'REPLY';
 	export let parent = null;
@@ -27,6 +30,7 @@
 					'--toastBarBackground': 'hsl(238, 40%, 52%)'
 				}
 			});
+			dispatch('comment-created');
 		} catch (error) {
 			console.error('There was an error while trying to create a comment: ', error);
 			toast.push('There was an error while trying to create your comment!', {

@@ -65,7 +65,7 @@
 			</div>
 		</section>
 		{#if showReplyTextField}
-			<ReplyTextField parent={comment.id} />
+			<ReplyTextField parent={comment.id} on:comment-created={() => (showReplyTextField = false)} />
 		{/if}
 	</div>
 	{#if comment.hasOwnProperty('replies')}

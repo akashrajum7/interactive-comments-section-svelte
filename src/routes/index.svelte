@@ -35,9 +35,6 @@
 		{#each $comments as comment (comment.id)}
 			<Comment {comment} />
 		{/each}
-		{#if $commentsLoading}
-			<Loader />
-		{/if}
 		<ReplyTextField label="SEND" />
 	</div>
 </div>
