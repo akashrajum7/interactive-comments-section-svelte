@@ -16,7 +16,10 @@
 	let showReplyTextField = false;
 
 	$: timeFromNow = dayjs(comment.created_at).fromNow();
-	$: upvotes = comment.upvotes[0].count;
+	$: upvotes =
+		comment.upvotes.length > 0
+			? comment.upvotes.reduce((count, upvote) => count + upvote.value, 0)
+			: 0;
 	$: commentOwner = comment.by.id === $session.user.id;
 	$: commentHasReplies = comment.hasOwnProperty('replies');
 
